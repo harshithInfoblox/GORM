@@ -85,4 +85,6 @@ func main() {
 	}
 	db.Table("users").Select("name", "age").Where("name = ?", "Jinzhu").Scan(&scanResult)
 	fmt.Println("Scan Result:", scanResult)
+	fmt.Println("*************************************************")
+	fmt.Println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 }
