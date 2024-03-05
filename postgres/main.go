@@ -1,49 +1,3 @@
-// package main
-
-// import (
-// 	"log"
-// 	"time"
-
-// 	"gorm.io/driver/postgres"
-// 	"gorm.io/gorm"
-// )
-
-// type User struct {
-// 	ID        uint
-// 	Name      string
-// 	Age       int
-// 	Birthday  time.Time
-// 	CreatedAt time.Time // Add CreatedAt field
-// }
-
-// func main() {
-// 	// Define PostgreSQL DSN
-// 	dsn := "host=localhost user='postgress' password='seceret' dbname=mydatabase port=5432 sslmode=disable TimeZone=Asia/Shanghai"
-
-// 	// Initialize GORM database instance with pgx driver and configuration
-// 	config := postgres.Config{
-// 		DSN:                  dsn,
-// 		PreferSimpleProtocol: true, // Disables implicit prepared statement usage
-// 	}
-
-// 	db, err := gorm.Open(postgres.New(config), &gorm.Config{})
-// 	if err != nil {
-// 		log.Fatalf("Error connecting to database: %v", err)
-// 	}
-
-// 	err = db.AutoMigrate(&User{})
-// 	if err != nil {
-// 		panic("failed to migrate database")
-// 	}
-
-//		// Create a Single Record
-//		user := User{Name: "1stNormal", Age: 18, Birthday: time.Now()}
-//		result := db.Create(&user)
-//		if result.Error != nil {
-//			panic(result.Error) // Handle error
-//		}
-//		//defer db.Close() // Remember to close the database connection when finished
-//	}
 package main
 
 import (
@@ -187,17 +141,17 @@ func crud(o organization, db *sql.DB) {
 	o.GetData(db)
 }
 func main() {
-	connstr := "postgres://postgres:secret@localhost:5432/mydatabase?sslmode=disable"
+	connstr := "postgres://postgres:@localhost:5432/freshdb?sslmode=disable"
 	db, err := sql.Open("postgres", connstr)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer db.Close()
 	// Create an instance of company table
-	company := &Company{name: "Amazon", city: "Delhi", domain: "Retail and Cloud"}
+	company := &Company{name: "Amazon", city: "banglore", domain: "Retail and Cloud"}
 	crud(company, db) // calling crud function
 	// Create an instance of Employees table
-	employees := &Employees{name: "Sanju", dept_id: 6, proj_id: 6}
+	employees := &Employees{name: "kaarthik", dept_id: 6, proj_id: 6}
 	crud(employees, db) // calling crud function
 	// Create an instance of Project table
 	project := &Project{proj_name: "Order Checkout Automation"}
